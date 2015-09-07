@@ -9,12 +9,12 @@ $ErrorActionPreference = 'Stop';
 $packageName = 'msys2'
 
 $url = 'http://downloads.sourceforge.net/msys2/Base/i686/msys2-base-i686-20150512.tar.xz'
-$checksum = 'f29e5279e3518ebfe029a5d12958ab4c'
-$checksumType = 'MD5'
+$checksum = '18f33537212bca9552659012a16d8c511ef5fc23'
+$checksumType = 'SHA1'
 
 $url64 = 'http://downloads.sourceforge.net/msys2/Base/x86_64/msys2-base-x86_64-20150512.tar.xz'
-$checksum64 = 'e05c18ab1192b37339f3f75f94066799'
-$checksumType64 = 'MD5'
+$checksum64 = '88fa66ac2a18715a542e0768b1af9b2f6e3680b2'
+$checksumType64 = 'SHA1'
 
 $toolsDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
