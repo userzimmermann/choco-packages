@@ -32,8 +32,8 @@ Chocolatey MSYS2 contains an extra **msystem.bat** script, which can be used to 
     <releaseNotes></releaseNotes>
   </metadata>
   <files>
-    <file src="LICENSE" target="" />
-    <file src="NOTICE" target="" />
+    <file src="*LICENSE" target="" />
+    <file src="*NOTICE" target="" />
     <file src="*.bat" target="" />
     <file src="tools\*.ps1" target="tools" />
   </files>
