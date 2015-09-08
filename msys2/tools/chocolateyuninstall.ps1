@@ -15,7 +15,8 @@ if (Get-Command Uninstall-ChocolateyPath -ErrorAction SilentlyContinue) {
     Write-Host "Removing '$packageDir' from PATH..."
     Uninstall-ChocolateyPath "$packageDir"
 } else {
-    Write-Host "Please remove '$packageDir' manually from PATH."
+    Write-Host "Please remove '$packageDir' manually from PATH.",
+      "This should work automatically with future 'choco' versions."
 }
 
 $osBitness = Get-ProcessorBits
