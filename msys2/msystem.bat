@@ -8,9 +8,11 @@ REM Licensed under the Apache License, Version 2.0
 if "%~1" == "/?" (
     echo Activates an MSYS2 environment inside a CMD shell,
     echo either in MSYS or MINGW32 or MINGW64 mode,
-    echo by prepending the relevant MSYS2 bin paths to %%PATH%%.
+    echo by prepending the relevant MSYS2 bin\ paths to %%PATH%%.
     echo.
     echo MSYSTEM [MSYS ^| MINGW32 ^| MINGW64]
+    echo.
+    echo The MINGW modes do NOT include the MSYS mode bin\ paths.
     echo.
     echo The root directory of the MSYS2 installation
     echo ^(usually C:\path\to\msys32 or ...\msys64^)
@@ -25,6 +27,16 @@ if "%~1" == "/?" (
     echo to show the currently active MSYS2 environment.
     echo.
     echo Call MSYSTEM /D to deactivate an MSYS2 environment.
+    echo.
+    echo There are also 3 convenience scripts for environment activation:
+    echo MSYS2 ^(for MSYS mode^), MINGW32, and MINGW64
+    echo.
+    echo Be careful when using MSYSTEM together with other shell environments
+    echo ^(like virtual Python environments, etc...^).
+    echo Due to %%PATH%% changes,
+    echo the precedence of commands with same names also changes.
+    echo Future versions of MSYSTEM will try to automatically avoid conflicts
+    echo with certain other environment types.
     exit /b 0
 )
 if "%~1" == "" (
