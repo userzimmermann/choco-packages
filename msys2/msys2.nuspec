@@ -27,7 +27,7 @@ Chocolatey MSYS2 offers an extra **msystem.bat** script in its package folder (w
     </description>
     <projectUrl>http://msys2.github.io</projectUrl>
     <tags>msys2 msys cygwin mingw w64 gnu linux unix posix arch pacman bash gcc</tags>
-    <!--<copyright></copyright>-->
+    <copyright>MSYS2 Copyright (c) 2013, Алексей</copyright>
     <!--<licenseUrl></licenseUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/msys2.png</iconUrl>-->
