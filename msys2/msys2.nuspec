@@ -30,7 +30,7 @@ Chocolatey MSYS2 offers an extra **msystem.bat** script in its package folder (w
     <copyright>MSYS2 Copyright (c) 2013, Алексей</copyright>
     <!--<licenseUrl></licenseUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/msys2.png</iconUrl>-->
+    <iconUrl>http://cdn.rawgit.com/userzimmermann/choco-packages/master/.icons/msys2.ico</iconUrl>
     <!--<dependencies>
       <dependency id="" version="__VERSION__" />
       <dependency id="" />
