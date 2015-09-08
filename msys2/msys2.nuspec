@@ -35,7 +35,7 @@ Chocolatey MSYS2 offers an extra **msystem.bat** script in its package folder (w
       <dependency id="" version="__VERSION__" />
       <dependency id="" />
     </dependencies>-->
-    <releaseNotes></releaseNotes>
+    <releaseNotes>https://github.com/userzimmermann/choco-packages/blob/master/msys2/CHANGES.md</releaseNotes>
   </metadata>
   <files>
     <file src="*LICENSE" target="" />
