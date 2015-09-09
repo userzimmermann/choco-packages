@@ -5,7 +5,7 @@
     <id>msys2</id>
     <title>MSYS2</title>
     <version>1.0.0.20150512</version>
-    <authors>Alexpux martell mingwandroid niXman</authors>
+    <authors>Alexpux, martell, mingwandroid, niXman</authors>
     <owners>userzimmermann</owners>
     <summary>A Cygwin-derived software distro for Windows using Arch Linux's Pacman</summary>
     <description>
@@ -13,22 +13,24 @@ MSYS2 is an independent rewrite of MSYS, based on modern Cygwin (POSIX compatibi
 
 You should read the full [official introduction](http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/) before using MSYS2.
 
+Chocolatey MSYS2 combines MSYS2 with some extra tools for better integration into CMD shell (and PowerShell in future releases).
+
 ### NOTES
 
 Chocolatey MSYS2 has its own versioning scheme. The first three numbers are the Chocolatey package version and the last number ist the MSYS2 archive version that will be downloaded.
 
 Chocolatey MSYS2 automatically installs either 32bit or 64bit MSYS2. It does NOT work with `choco install -x86` (forced 32bit installation) under 64bit Windows. There is usually no need to install a 32bit MSYS2 under 64bit Windows, because MSYS2 always contains a MINGW32 and a MINGW64 environment.
 
-The MSYS2 archive will be extracted to Chocolatey's **BinRoot** (usually **C:\\Tools\\**). The 32bit variant uses an **msys32\\** root folder and the 64bit variant uses **msys64\\** respectively. The MSYS2 root folder will be appended to `%PATH%`. It contains the **msys2_shell.bat**, **mingw32_shell.bat**, and **mingw64_shell.bat** scripts. No **bin\\** folders will be added to `%PATH%`. After unpacking, MSYS2 will be automatically initialized and updated with Pacman according to the [official instructions](https://msys2.github.io).
+The MSYS2 archive will be extracted to Chocolatey's **BinRoot** (usually **C:\\Tools\\**). The 32bit variant uses an **msys32\\** root folder and the 64bit variant uses **msys64\\** respectively. The MSYS2 root folder will be appended to `%PATH%`. It contains the **msys2\_shell.bat**, **mingw32\_shell.bat**, and **mingw64\_shell.bat** scripts. No **bin\\** folders will be added to `%PATH%`. After unpacking, MSYS2 will be automatically initialized and updated with Pacman according to the [official instructions](https://msys2.github.io).
 
 MSYS2 itself will not be removed on uninstalling the Chocolatey package and will not be downloaded and extracted again (even if the MSYS2 archive version has changed) on updating or reinstalling the Chocolatey package. The existing MSYS2 will just be updated with Pacman.
 
 Chocolatey MSYS2 offers an extra **msystem.bat** script in its package folder (which will also be appended to `%PATH%`). The script can be used to activate and switch **MSYS**, **MINGW32**, and **MINGW64** environments inside a CMD shell without running Bash. It will prepend the appropriate **bin\\** folders to `%PATH%`. Call `msystem /?` after installation or look at the top of the script file for details. More extra features (like better integration with other shell environments and wrapper scripts for `bash`, `pacman`, and `makepkg`) and an according PowerShell module will be added in future releases of Chocolatey MSYS2.
     </description>
     <projectUrl>http://msys2.github.io</projectUrl>
-    <tags>msys2 msys cygwin mingw w64 gnu linux unix posix arch pacman bash gcc</tags>
+    <tags>msys2 msys cygwin mingw w64 gnu linux unix posix arch pacman bash gcc cmd powershell posh</tags>
     <copyright>MSYS2 Copyright (c) 2013, Алексей</copyright>
-    <!--<licenseUrl></licenseUrl>-->
+    <licenseUrl>https://github.com/userzimmermann/choco-packages/blob/master/msys2/NOTICE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>http://cdn.rawgit.com/userzimmermann/choco-packages/master/.icons/msys2.ico</iconUrl>
     <!--<dependencies>
