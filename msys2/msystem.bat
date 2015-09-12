@@ -5,6 +5,7 @@ REM Copyright (C) 2015 Stefan Zimmermann <zimmermann.code@gmail.com>
 REM
 REM Licensed under the Apache License, Version 2.0
 
+
 if "%~1" == "/?" (
     echo Activates an MSYS2 environment inside a CMD shell,
     echo either in MSYS or MINGW32 or MINGW64 mode,
@@ -34,6 +35,16 @@ if "%~1" == "/?" (
     echo the precedence of commands with same names also changes.
     echo Future versions of MSYSTEM will try to automatically avoid conflicts
     echo with certain other environment types.
+    echo.
+    echo Call MSYSTEM /I with any of the following specifiers
+    echo to install MSYS2 features into certain shell extension frameworks.
+    echo.
+    echo Install CLINK auto-completion for MSYSTEM and PACMAN with:
+    echo.
+    echo     MSYSTEM /I CLINK [clink settings directory]
+    echo.
+    echo If no CLINK settings directory is given,
+    echo MSYSTEM will try to automatically find it.
     exit /b 0
 )
 if "%~1" == "" (
@@ -45,13 +56,23 @@ if "%~1" == "" (
     echo %MSYS2_SYSTEM%
     exit /b 0
 )
+
+REM --------------------------------------------------------------------------
+REM Handle flags
+
 if /i "%~1" == "/D" (
     REM deactivate MSYS2 environment
     set MSYS2_SYSTEM=
     goto prepare
 )
+if /i "%~1" == "/I" (
+    REM install MSYS2 features into CMD shell extension frameworks
+    goto install
+)
 
+REM --------------------------------------------------------------------------
 REM Check for valid MSYS2 environment name and set %MSYS2_SYSTEM% accordingly
+
 for %%M in (MSYS MINGW32 MINGW64) do if /i "%~1" == "%%M" (
     set MSYS2_SYSTEM=%%M
     goto prepare
@@ -59,7 +80,9 @@ for %%M in (MSYS MINGW32 MINGW64) do if /i "%~1" == "%%M" (
 echo Invalid argument '%~1'. Call MSYSTEM /? for help.
 exit /b 1
 
-REM check system and create variables for MSYS2 (de)activation
+
+REM --------------------------------------------------------------------------
+REM Check system and create variables for MSYS2 (de)activation
 :prepare
 
 if "%MSYS2_ROOT%" == "" (
@@ -91,7 +114,9 @@ set "MSYS2_PATH=%MSYS2_ROOT%\usr\local\bin;%MSYS2_ROOT%\usr\bin;%MSYS2_ROOT%\bin
 set "MSYS2_MINGW32_PATH=%MSYS2_ROOT%\mingw32\bin"
 set "MSYS2_MINGW64_PATH=%MSYS2_ROOT%\mingw64\bin"
 
-REM always deactivate current MSYS2 environment before activating a new one
+
+REM --------------------------------------------------------------------------
+REM Always deactivate current MSYS2 environment before activating a new one
 :deactivate
 
 REM remove any existing MSYS2 and MINGW32/64 bin paths from %PATH%
@@ -113,6 +138,8 @@ if "%MSYS2_SYSTEM%" == "" (
     exit /b 0
 )
 
+
+REM --------------------------------------------------------------------------
 :activate
 
 REM prepend MSYS2 bin paths and/or MINGW32/64 bin paths to %PATH%
@@ -131,3 +158,63 @@ prompt $L%MSYS2_SYSTEM%$G$S%_cleanPrompt%
 set _cleanPrompt=
 
 exit /b 0
+
+
+REM --------------------------------------------------------------------------
+REM Install MSYS2 features into CMD shell extensions frameworks
+:install
+
+if "%2" == "" (
+    echo Missing specifier. Call MSYSTEM /? for help.
+    exit /b 1
+)
+if /i "%2" == "clink" goto clink
+
+
+REM --------------------------------------------------------------------------
+REM Install MSYS2 auto-completion features into CLINK
+:clink
+
+setlocal EnableDelayedExpansion
+
+if /i "%~3" == "" (
+    REM no clink settings dir given ==> try to find
+    set "clinkDir=%localappdata%\clink"
+    if not exist "!clinkDir!\" (
+        echo Could not find CLINK settings directory.
+        echo Please provide it as additional argument.
+        exit /b 1
+    )
+) else (
+    if not exist "%~3\" (
+        echo '%~3' does not exist or is not a directory.
+        exit /b 1
+    )
+    set "clinkDir=%~3"
+)
+
+set nl=^
+
+
+set "root=%~dp0"
+REM remove trailing \
+set "root=%root:~0,-1%"
+REM create a LUA script that loads all auto-completion scripts from .\clink\
+set msysLua=                                                             !nl!^
+    local root = "%root:\=\\%"                                           !nl!^
+    local scripts = {}                                                   !nl!^
+    local p = io.popen("dir /b " .. root .. "\\clink\\*.lua")            !nl!^
+    for file in p:lines() do                                             !nl!^
+        table.insert(scripts, file)                                      !nl!^
+    end                                                                  !nl!^
+    if p:close() then                                                    !nl!^
+       for _, file in next, scripts do                                   !nl!^
+           dofile(root .. "\\clink\\" .. file)                           !nl!^
+       end                                                               !nl!^
+    end                                                                  !nl!^
+
+
+echo Writing '%clinkDir%\msys2.lua'
+echo !msysLua! > %clinkDir%\msys2.lua
+
+endlocal
