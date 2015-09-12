@@ -28,9 +28,6 @@ if "%~1" == "/?" (
     echo.
     echo Call MSYSTEM /D to deactivate an MSYS2 environment.
     echo.
-    echo There are also 3 convenience scripts for environment activation:
-    echo MSYS2 ^(for MSYS mode^), MINGW32, and MINGW64
-    echo.
     echo Be careful when using MSYSTEM together with other shell environments
     echo ^(like virtual Python environments, etc...^).
     echo Due to %%PATH%% changes,
