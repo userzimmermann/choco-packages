@@ -1,3 +1,10 @@
+### 1.1.0.20150512
+
+* Extra **msys\bash.bat** and **msys\pacman.bat** wrappers for **MSYS** mode.
+* Clink auto-completion scripts for **msystem** and **pacman**.
+* `msystem /i clink` feature
+  for installing Clink auto-completion script loader.
+
 ### 1.0.1.20150512
 
 * Removed convenience **msys2.bat**, **mingw32.bat**, and **mingw64.bat**
