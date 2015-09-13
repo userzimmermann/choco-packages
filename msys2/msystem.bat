@@ -161,7 +161,7 @@ exit /b 0
 
 
 REM --------------------------------------------------------------------------
-REM Install MSYS2 features into CMD shell extensions frameworks
+REM Install MSYS2 features into CMD shell extension frameworks
 :install
 
 if "%2" == "" (
