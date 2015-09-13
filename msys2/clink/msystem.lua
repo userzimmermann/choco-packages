@@ -31,6 +31,6 @@ clink.arg.register_parser("msystem",
   new_parser({systems}):set_flags({
       "/?" .. none,
       "/d" .. none,
-      "/i" .. parser(installers),
+      "/i" .. new_parser(installers),
   })
 )
