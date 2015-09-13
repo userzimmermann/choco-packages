@@ -5,14 +5,31 @@
 -- Licensed under the Apache License, Version 2.0
 
 
--- dummy parser for termination of arg list (no more choices)
-local _ = clink.arg.new_parser({})
+parser = clink.arg.new_parser
+
+-- dummy parser for terminating arg list (no more choices)
+local _ = parser({})
+
+-- fall back to clink's default filesystem matching
+local default = parser({function() end})
 
 
-clink.arg.register_parser("msystem", clink.arg.new_parser({
+local systems = {
     "msys" .. _,
     "mingw32" .. _,
     "mingw64" .. _,
-    "/d" .. _,
-    "/?" .. _,
-}))
+}
+
+-- specifiers for msystem /i
+local installers = {
+    -- supports an optional clink settings dir
+    "clink" .. default,
+}
+
+clink.arg.register_parser("msystem",
+  parser({systems}):set_flags({
+      "/?" .. _,
+      "/d" .. _,
+      "/i" .. parser(installers),
+  })
+)
