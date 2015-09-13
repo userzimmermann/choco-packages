@@ -7,8 +7,8 @@
 
 new_parser = clink.arg.new_parser
 
--- dummy parser for termination of arg list (no more choices)
-local _ = new_parser({})
+-- dummy parser for disabling completion
+local none = new_parser({})
 
 -- create an override parser doing default filesystem matching
 function new_default_parser()
@@ -65,7 +65,7 @@ local function subflags(flag)
         end
         local value_parser = nil
         if value_type then
-            value_parser = value_parsers[value_type] or _
+            value_parser = value_parsers[value_type] or none
         end
         if short then
             table.insert(subflags,
@@ -89,8 +89,8 @@ clink.arg.register_parser("pacman",
   -- which are not explicitly defined (like -Syu)
   new_parser(packages):set_flags({
       -- flags without further args
-      "-h" .. _, "--help" .. _,
-      "-V" .. _, "--version" .. _,
+      "-h" .. none, "--help" .. none,
+      "-V" .. none, "--version" .. none,
   }):add_flags((function()
       local flags = {}
       -- flags followed by optional subflags and package names

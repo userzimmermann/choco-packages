@@ -5,19 +5,20 @@
 -- Licensed under the Apache License, Version 2.0
 
 
-parser = clink.arg.new_parser
+new_parser = clink.arg.new_parser
 
--- dummy parser for terminating arg list (no more choices)
-local _ = parser({})
+-- dummy parser for disabling completion
+local none = new_parser({})
 
--- fall back to clink's default filesystem matching
-local default = parser({function() end})
+-- dummy parser falling back to clink's default filesystem matching
+--TODO: somehow predefined in clink api?
+local default = new_parser({function() end})
 
 
 local systems = {
-    "msys" .. _,
-    "mingw32" .. _,
-    "mingw64" .. _,
+    "msys" .. none,
+    "mingw32" .. none,
+    "mingw64" .. none,
 }
 
 -- specifiers for msystem /i
@@ -27,9 +28,9 @@ local installers = {
 }
 
 clink.arg.register_parser("msystem",
-  parser({systems}):set_flags({
-      "/?" .. _,
-      "/d" .. _,
+  new_parser({systems}):set_flags({
+      "/?" .. none,
+      "/d" .. none,
       "/i" .. parser(installers),
   })
 )
