@@ -36,22 +36,44 @@ end)()
 packages_parser:set_arguments(packages)
 
 
--- get available subflags from from pacman <flag> --help
+-- auto-completion for different types of values expected by subflags
+value_parsers = {}
+value_parsers["dir"] = default
+value_parsers["path"] = default
+value_parsers["repo"] = new_parser({"msys", "mingw32", "mingw64"})
+value_parsers["when"] = new_parser({"auto", "always", "never"})
+
+-- get available subflags from pacman <flag> --help
 local function subflags(flag)
     local p = io.popen("pacman.exe " .. flag .. " --help 2>&1")
     local subflags = {}
     for line in p:lines() do
-        --^   -x, --long   description...
-        local short, long = line:match("^%s*(%-[^%s])%s*,%s*(%-%-[^%s]+)")
-        if short then
-            subflags[#subflags + 1] = short
-            subflags[#subflags + 1] = long
-        else
-            --^   --long   description...
-            local long = line:match("^%s*(%-%-[^%s]+)")
-            if long then
-                subflags[#subflags + 1] = long
+        --   -x, --long <value type>   description...
+        local short, long, value_type = line:match(
+          "^%s*(%-[^%s])%s*,%s*(%-%-[^%s]+)%s+<([^>]+)>")
+        if not value_type then
+            --   -x, --long   description...
+            short, long = line:match("^%s*(%-[^%s])%s*,%s*(%-%-[^%s]+)")
+            if not short then
+               --   --long <value type>   description...
+               long, value_type = line:match("^%s*(%-%-[^%s]+)%s+<([^>]+)>")
+               if not value_type then
+                   --   --long   description...
+                   long = line:match("^%s*(%-%-[^%s]+)")
+               end
             end
+        end
+        local value_parser = nil
+        if value_type then
+            value_parser = value_parsers[value_type] or _
+        end
+        if short then
+            table.insert(subflags,
+              value_parser and short .. value_parser or short)
+        end
+        if long then
+            table.insert(subflags,
+              value_parser and long .. value_parser or long)
         end
     end
     if p:close() then
