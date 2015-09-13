@@ -5,15 +5,24 @@
 -- Licensed under the Apache License, Version 2.0
 
 
+new_parser = clink.arg.new_parser
+
 -- dummy parser for termination of arg list (no more choices)
-local _ = clink.arg.new_parser({})
+local _ = new_parser({})
+
+-- create an override parser doing default filesystem matching
+function new_default_parser()
+    return new_parser({function() end})
+end
+
+local default = new_default_parser({function() end})
 
 
 -- auto-completion of package names
-local packages_parser = clink.arg.new_parser()
+local packages_parser = new_parser()
 -- the actual packages table to be used in pacman argument parser
 local packages = (function()
-    local p = io.popen("pacman.exe -Ssq")
+    local p = io.popen("pacman.exe -Ssq 2>&1")
     local names = {}
     for name in p:lines() do
         -- let package args recursively expect another package as next arg
@@ -27,9 +36,8 @@ end)()
 packages_parser:set_arguments(packages)
 
 
+-- get available subflags from from pacman <flag> --help
 local function subflags(flag)
-    -- parse output from pacman <flag> --help for available subflags
-    --
     local p = io.popen("pacman.exe " .. flag .. " --help 2>&1")
     local subflags = {}
     for line in p:lines() do
@@ -54,7 +62,10 @@ end
 
 
 clink.arg.register_parser("pacman",
-  clink.arg.new_parser(packages):set_flags({
+  -- also set packages as base arguments
+  -- to enable package completion after combined short flags
+  -- which are not explicitly defined (like -Syu)
+  new_parser(packages):set_flags({
       -- flags without further args
       "-h" .. _, "--help" .. _,
       "-V" .. _, "--version" .. _,
@@ -70,13 +81,13 @@ clink.arg.register_parser("pacman",
           "-T", "--deptest",
       } do
           table.insert(flags, flag ..
-            clink.arg.new_parser(packages):set_flags(subflags(flag)))
+            new_parser(packages):set_flags(subflags(flag)))
       end
       -- flags followed by optional subflags and file paths
       local subflags = subflags("-U")
       for _, flag in next, {"-U", "--upgrade"} do
           table.insert(flags, flag ..
-            clink.arg.new_parser():set_flags(subflags))
+            new_default_parser():set_flags(subflags))
       end
       return flags
   end)())
