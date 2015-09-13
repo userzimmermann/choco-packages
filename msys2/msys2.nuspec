@@ -43,6 +43,7 @@ Chocolatey MSYS2 offers an extra **msystem.bat** script in its package folder (w
     <file src="*LICENSE" target="" />
     <file src="*NOTICE" target="" />
     <file src="*.bat" target="" />
+    <file src="msys\*.bat" target="msys" />
     <file src="clink\*.lua" target="clink" />
     <file src="tools\*.ps1" target="tools" />
   </files>
