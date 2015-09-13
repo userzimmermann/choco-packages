@@ -15,6 +15,9 @@ if "%~1" == "/?" (
     echo.
     echo The MINGW modes do NOT include the MSYS mode bin\ paths.
     echo.
+    echo In MSYS mode, an additional path containing wrapper scripts
+    echo for BASH and PACMAN is prepended to %%PATH%%.
+    echo.
     echo The root directory of the MSYS2 installation
     echo ^(usually C:\path\to\msys32 or ...\msys64^)
     echo must be defined in %%MSYS2_ROOT%% or must be in %%PATH%%.
@@ -123,6 +126,8 @@ REM remove any existing MSYS2 and MINGW32/64 bin paths from %PATH%
 call set "PATH=%%PATH:%MSYS2_PATH%;=%%"
 call set "PATH=%%PATH:%MSYS2_MINGW32_PATH%;=%%"
 call set "PATH=%%PATH:%MSYS2_MINGW64_PATH%;=%%"
+REM and also remove the extra MSYS tool wrapper scripts path
+call set "PATH=%%PATH:%~dp0msys;=%%"
 
 REM remove any <MSYS> or <MINGW32/64> tags from %PROMPT%
 REM (use temporary %_msysPrompt% to avoid too many %PROMPT% changes,
@@ -144,7 +149,8 @@ REM --------------------------------------------------------------------------
 
 REM prepend MSYS2 bin paths and/or MINGW32/64 bin paths to %PATH%
 if "%MSYS2_SYSTEM%" == "MSYS" (
-    set "PATH=%MSYS2_PATH%;%PATH%"
+    REM also prepend the extra MSYS tool wrapper scripts path
+    set "PATH=%~dp0msys;%MSYS2_PATH%;%PATH%"
 )
 if "%MSYS2_SYSTEM%" == "MINGW32" (
     set "PATH=%MSYS2_MINGW32_PATH%;%PATH%"
