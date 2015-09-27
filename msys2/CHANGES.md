@@ -1,3 +1,8 @@
+### 20150916.0.0
+
+* Changed versioning scheme.
+* Downloads 32bit or 64bit MSYS2 20150916.
+
 ### 1.1.0.20150512
 
 * Extra **msys\bash.bat** and **msys\pacman.bat** wrappers for **MSYS** mode.
