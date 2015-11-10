@@ -41,11 +41,18 @@ if "%~1" == "/?" (
     echo without an argument.
     echo.
     echo The 'start' command actually calls the 'server' command,
-    echo but in a new CMD window.
+    echo but in a new CMD window, similar to how it is done by the dedicated
+    echo '%KARAF_HOME%\bin\start.bat'.
+    echo But unlike the latter it does not create the CMD window minimized.
+    echo So it appears as a new tab in console managers like ConEmu.
+    echo.
+    echo The 'client' command calls the dedicated
+    echo '%KARAF_HOME%\bin\client.bat'
+    echo instead of 'karaf.bat client'.
     echo.
     echo %%KARAF_HOME%% is set to '%KARAF_HOME%'
     echo and %%KARAF_TITLE%% is set to '%KARAF_TITLE%'
-    echo before running 'karaf.bat'.
+    echo before running 'karaf.bat' or 'client.bat'.
     exit /b 0
 )
 
