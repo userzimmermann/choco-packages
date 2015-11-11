@@ -4,7 +4,12 @@ Chocolatey OpenDaylight Lithium
 * https://bitbucket.org/userzimmermann/choco-packages/src/default/opendaylight-lithium
 * https://github.com/userzimmermann/choco-packages/tree/master/opendaylight-lithium
 
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+Licensed under the [Apache License, Version 2.0](
+  http://www.apache.org/licenses/LICENSE-2.0)
+
+[![Build status](
+  https://ci.appveyor.com/api/projects/status/m1os37gldbmyn6r6?svg=true)](
+  https://ci.appveyor.com/project/userzimmermann/choco-packages-gnsrq)
 
 **From** https://www.opendaylight.org :
 
