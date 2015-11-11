@@ -35,4 +35,4 @@ $karafHome = Join-Path $daylightRoot $distributionName
 
 $karafHomeFile = Join-Path $packageDir KARAF_HOME
 Write-Host "Writing '$karafHome' to '$karafHomeFile'"
-New-Item $karafHomeFile -Value $karafHome
+Out-File $karafHomeFile -InputObject $karafHome
