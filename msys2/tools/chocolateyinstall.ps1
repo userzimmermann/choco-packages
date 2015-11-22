@@ -8,11 +8,11 @@ $ErrorActionPreference = 'Stop';
 
 $packageName = 'msys2'
 
-$url = 'http://downloads.sourceforge.net/msys2/Base/i686/msys2-base-i686-20150916.tar.xz'
+$url = 'http://repo.msys2.org/distrib/i686/msys2-base-i686-20150916.tar.xz'
 $checksum = 'c0f87ca4e5b48d72c152305c11841551029d4257'
 $checksumType = 'SHA1'
 
-$url64 = 'http://downloads.sourceforge.net/msys2/Base/x86_64/msys2-base-x86_64-20150916.tar.xz'
+$url64 = 'http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20150916.tar.xz'
 $checksum64 = 'abc08265b90f68e8f68c74e833f42405e85df4ee'
 $checksumType64 = 'SHA1'
 
