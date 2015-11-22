@@ -1,3 +1,9 @@
+### 20150916.0.1
+
+* Updated 32bit and 64bit download URLs for MSYS2 20150916.
+* Added `<packageSourceUrl>`, `<projectSourceUrl>`, and `<docsUrl>` 
+  to **msys2.nuspec**
+
 ### 20150916.0.0
 
 * Changed versioning scheme.
