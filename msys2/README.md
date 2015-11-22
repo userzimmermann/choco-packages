@@ -1,11 +1,22 @@
 Chocolatey MSYS2
 ================
 
-MSYS2 is an independent rewrite of MSYS, based on modern Cygwin (POSIX compatibility layer) and MinGW-w64 with the aim of better interoperability with native Windows software.
+* https://bitbucket.org/userzimmermann/choco-packages/src/default/msys2
+* https://github.com/userzimmermann/choco-packages/tree/master/msys2
+
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+[![Build status](
+  https://ci.appveyor.com/api/projects/status/wf4g2ftsatog8wvf?svg=true)](
+  https://ci.appveyor.com/project/userzimmermann/choco-packages-6hb62)
+
+**From** https://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/ :
+
+"MSYS2 is an independent rewrite of MSYS, based on modern Cygwin (POSIX compatibility layer) and MinGW-w64 with the aim of better interoperability with native Windows software."
 
 You should read the full [official introduction](http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/) before using MSYS2.
 
-Chocolatey MSYS2 combines MSYS2 with some extra tools for better integration into CMD shell (and PowerShell in future releases).
+**Chocolatey MSYS2** is not affiliated with the MSYS2 project and does not include a copy of MSYS2. It just automatically downloads and installs MSYS2 and adds some extra tools for better integration into CMD shell (and PowerShell in future releases).
 
 ### NOTES
 

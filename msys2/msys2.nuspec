@@ -4,16 +4,18 @@
   <metadata>
     <id>msys2</id>
     <title>MSYS2</title>
-    <version>20150916.0.0</version>
+    <version>20150916.0.1</version>
     <authors>Alexpux, martell, mingwandroid, niXman</authors>
     <owners>userzimmermann</owners>
     <summary>A Cygwin-derived software distro for Windows using Arch Linux's Pacman</summary>
     <description>
-MSYS2 is an independent rewrite of MSYS, based on modern Cygwin (POSIX compatibility layer) and MinGW-w64 with the aim of better interoperability with native Windows software.
+**From** https://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/ :
+
+"MSYS2 is an independent rewrite of MSYS, based on modern Cygwin (POSIX compatibility layer) and MinGW-w64 with the aim of better interoperability with native Windows software."
 
 You should read the full [official introduction](http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/) before using MSYS2.
 
-Chocolatey MSYS2 combines MSYS2 with some extra tools for better integration into CMD shell (and PowerShell in future releases).
+**Chocolatey MSYS2** is not affiliated with the MSYS2 project and does not include a copy of MSYS2. It just automatically downloads and installs MSYS2 and adds some extra tools for better integration into CMD shell (and PowerShell in future releases).
 
 ### NOTES
 
@@ -28,6 +30,9 @@ MSYS2 itself will not be removed on uninstalling the Chocolatey package and will
 Chocolatey MSYS2 offers an extra **msystem.bat** script in its package folder (which will also be appended to `%PATH%`). The script can be used to activate and switch **MSYS**, **MINGW32**, and **MINGW64** environments inside a CMD shell without running Bash. It will prepend the appropriate **bin\\** folders to `%PATH%`. **MSYS** mode additionally provides **bash.bat** and **pacman.bat** wrapper scripts and according auto-completion scripts for Clink. Call `msystem /?` after installation or look at the top of the script file for more details. These extra features and even more (like better integration with other shell environments, a better **bash.bat**, and more wrapper scripts for tools like `makepkg`, ..., and an according PowerShell module) will be moved from the Chocolatey MSYS2 package to separate projects, which will then be installable as MSYS2 packages, of course auto-installed by Chocolatey MSYS2 :)
     </description>
     <projectUrl>http://msys2.github.io</projectUrl>
+    <packageSourceUrl>https://github.com/userzimmermann/choco-packages/tree/master/msys2</packageSourceUrl>
+    <projectSourceUrl>https://github.com/Alexpux/MSYS2-packages</projectSourceUrl>
+    <docsUrl>https://sourceforge.net/p/msys2/wiki</docsUrl>
     <tags>msys2 msys cygwin mingw w64 gnu linux unix posix arch pacman bash makepkg gcc cmd clink powershell posh</tags>
     <copyright>MSYS2 Copyright (c) 2013, Алексей</copyright>
     <licenseUrl>https://github.com/userzimmermann/choco-packages/blob/master/msys2/NOTICE</licenseUrl>
