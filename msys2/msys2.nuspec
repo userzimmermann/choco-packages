@@ -9,11 +9,13 @@
     <owners>userzimmermann</owners>
     <summary>A Cygwin-derived software distro for Windows using Arch Linux's Pacman</summary>
     <description>
-MSYS2 is an independent rewrite of MSYS, based on modern Cygwin (POSIX compatibility layer) and MinGW-w64 with the aim of better interoperability with native Windows software.
+**From** https://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/ :
+
+"MSYS2 is an independent rewrite of MSYS, based on modern Cygwin (POSIX compatibility layer) and MinGW-w64 with the aim of better interoperability with native Windows software."
 
 You should read the full [official introduction](http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/) before using MSYS2.
 
-Chocolatey MSYS2 combines MSYS2 with some extra tools for better integration into CMD shell (and PowerShell in future releases).
+**Chocolatey MSYS2** is not affiliated with the MSYS2 project and does not include a copy of MSYS2. It just automatically downloads and installs MSYS2 and adds some extra tools for better integration into CMD shell (and PowerShell in future releases).
 
 ### NOTES
 
