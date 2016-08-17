@@ -1,3 +1,7 @@
+### 20160719.0.1
+
+* Updated 32bit and 64bit download URLs for MSYS2 20160719.
+
 ### 20150916.0.1
 
 * Updated 32bit and 64bit download URLs for MSYS2 20150916.
