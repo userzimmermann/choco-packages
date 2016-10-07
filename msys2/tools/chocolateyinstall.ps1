@@ -53,15 +53,16 @@ Write-Host "Adding '$msysRoot' to PATH..."
 Install-ChocolateyPath $msysRoot
 
 # Finally initialize and upgrade MSYS2 according to https://msys2.github.io
+# and https://sourceforge.net/p/msys2/wiki/MSYS2%20installation/
 Write-Host "Initializing MSYS2..."
-$msysShell = Join-Path $msysRoot msys2_shell.cmd
-write-host "Starting $msysShell..."
+$msysShell = Join-Path $msysRoot msys2.exe
+Write-Host "Starting '$msysShell'..."
 Start-Process -Wait $msysShell -ArgumentList '-c', exit
 
-$command = 'pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime'
-Write-Host "Updating system packages with '$command'..."
+$command = 'pacman --noconfirm -Syuu'
+Write-Host "Upgrading core system packages with '$command'..."
 Start-Process -Wait $msysShell -ArgumentList '-c', "'$command'"
 
-$command = 'pacman --noconfirm -Su'
+# $command = 'pacman --noconfirm -Syuu'
 Write-Host "Upgrading full system with '$command'..."
 Start-Process -Wait $msysShell -ArgumentList '-c', "'$command'"
