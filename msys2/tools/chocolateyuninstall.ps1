@@ -21,7 +21,7 @@ if (Get-Command Uninstall-ChocolateyPath -ErrorAction SilentlyContinue) {
 
 $osBitness = Get-ProcessorBits
 
-$binRoot = Get-BinRoot
+$binRoot = Get-ToolsLocation
 # MSYS2 root dir is named msys32 or msys64
 $msysName = "msys$osBitness"
 $msysRoot = Join-Path $binRoot $msysName

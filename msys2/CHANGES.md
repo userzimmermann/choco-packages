@@ -1,3 +1,10 @@
+### 20160719.0.1
+
+* Updated 32bit and 64bit download URLs for MSYS2 20160719.
+* Fixed install script for new Chocolatey and MSYS2 versions.
+* Added **petemounce** to `<owners>` in **msys2.nuspec**.
+* Thanks to `github.com/petemounce` and his pull requests!
+
 ### 20150916.0.1
 
 * Updated 32bit and 64bit download URLs for MSYS2 20150916.
