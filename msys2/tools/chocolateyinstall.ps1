@@ -24,7 +24,7 @@ Install-ChocolateyPath $packageDir
 
 $osBitness = Get-ProcessorBits
 
-$binRoot = Get-BinRoot
+$binRoot = Get-ToolsLocation
 # MSYS2 zips contain a root dir named msys32 or msys64
 $msysName = 'msys' + $osBitness
 $msysRoot = Join-Path $binRoot $msysName
@@ -39,10 +39,13 @@ else {
       -checksum64 $checksum64 -checksumType64 $checksumType64
     # check if .tar.xz was only unzipped to tar file
     # (shall work better with newer choco versions)
-    $tarFile = Join-Path $binRoot msys2Install
+    $tarFile = (get-childitem -path $binRoot "msys2*.tar").FullName
+    write-host "Tar: $tarFile"
     if (Test-Path $tarFile) {
         Get-ChocolateyUnzip $tarFile $binRoot
         Remove-Item $tarFile
+    } else {
+        write-error "No tarball found in $binRoot"
     }
 }
 
@@ -52,6 +55,7 @@ Install-ChocolateyPath $msysRoot
 # Finally initialize and upgrade MSYS2 according to https://msys2.github.io
 Write-Host "Initializing MSYS2..."
 $msysShell = Join-Path $msysRoot msys2_shell.bat
+write-host "Starting $msysShell..."
 Start-Process -Wait $msysShell -ArgumentList '-c', exit
 
 $command = 'pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime'
