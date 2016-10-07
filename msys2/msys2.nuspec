@@ -5,8 +5,8 @@
     <id>msys2</id>
     <title>MSYS2</title>
     <version>20160719.0.1</version>
-    <authors>Alexpux, martell, mingwandroid, niXman, petemounce</authors>
-    <owners>userzimmermann</owners>
+    <authors>Alexpux, martell, mingwandroid, niXman</authors>
+    <owners>userzimmermann, petemounce</owners>
     <summary>A Cygwin-derived software distro for Windows using Arch Linux's Pacman</summary>
     <description>
 **From** https://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/ :
