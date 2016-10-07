@@ -59,7 +59,7 @@ Write-Host "Initializing MSYS2..."
 $msysExe = Join-Path $msysRoot msys2.exe
 if (-not (Test-Path $msysExe)) {
     throw @"
-No '$msysShell' found.
+No '$msysExe' found.
 You probably have an outdated MSYS2 installation in '$msysRoot'.
 Please delete '$msysRoot' and reinstall.
 "@
