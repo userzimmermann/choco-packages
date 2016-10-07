@@ -39,13 +39,13 @@ else {
       -checksum64 $checksum64 -checksumType64 $checksumType64
     # check if .tar.xz was only unzipped to tar file
     # (shall work better with newer choco versions)
-    $tarFile = (get-childitem -path $binRoot "msys2*.tar").FullName
-    write-host "Tar: $tarFile"
+    $tarFile = (Get-ChildItem -path $binRoot "msys2*.tar").FullName
+    Write-Host "Tar: $tarFile"
     if (Test-Path $tarFile) {
         Get-ChocolateyUnzip $tarFile $binRoot
         Remove-Item $tarFile
     } else {
-        write-error "No tarball found in $binRoot"
+        Write-Error "No tarball found in $binRoot"
     }
 }
 
