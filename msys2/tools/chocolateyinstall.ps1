@@ -8,12 +8,12 @@ $ErrorActionPreference = 'Stop';
 
 $packageName = 'msys2'
 
-$url = 'http://repo.msys2.org/distrib/i686/msys2-base-i686-20160719.tar.xz'
-$checksum = '2F222FA6409D2C14B97DC5197757BE387D6D12E3'
+$url = 'http://repo.msys2.org/distrib/i686/msys2-base-i686-20160921.tar.xz'
+$checksum = '7DA041072DC2F8A346803AFE4FF1E1977DD1E905'
 $checksumType = 'SHA1'
 
-$url64 = 'http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20160719.tar.xz'
-$checksum64 = '4FF1090B143DEAEDED088146E04503B9A3C15FDB'
+$url64 = 'http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20160921.tar.xz'
+$checksum64 = '78B1738EB6049EFB693E3D1AA4502BCBE03B2964'
 $checksumType64 = 'SHA1'
 
 $toolsDir = Split-Path -parent $MyInvocation.MyCommand.Definition
