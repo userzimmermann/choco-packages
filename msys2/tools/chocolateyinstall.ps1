@@ -8,12 +8,12 @@ $ErrorActionPreference = 'Stop';
 
 $packageName = 'msys2'
 
-$url = 'http://repo.msys2.org/distrib/i686/msys2-base-i686-20150916.tar.xz'
-$checksum = 'c0f87ca4e5b48d72c152305c11841551029d4257'
+$url = 'http://repo.msys2.org/distrib/i686/msys2-base-i686-20160719.tar.xz'
+$checksum = '2F222FA6409D2C14B97DC5197757BE387D6D12E3'
 $checksumType = 'SHA1'
 
-$url64 = 'http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20150916.tar.xz'
-$checksum64 = 'abc08265b90f68e8f68c74e833f42405e85df4ee'
+$url64 = 'http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20160719.tar.xz'
+$checksum64 = '4FF1090B143DEAEDED088146E04503B9A3C15FDB'
 $checksumType64 = 'SHA1'
 
 $toolsDir = Split-Path -parent $MyInvocation.MyCommand.Definition
@@ -24,7 +24,7 @@ Install-ChocolateyPath $packageDir
 
 $osBitness = Get-ProcessorBits
 
-$binRoot = Get-BinRoot
+$binRoot = Get-ToolsLocation
 # MSYS2 zips contain a root dir named msys32 or msys64
 $msysName = 'msys' + $osBitness
 $msysRoot = Join-Path $binRoot $msysName
@@ -39,10 +39,13 @@ else {
       -checksum64 $checksum64 -checksumType64 $checksumType64
     # check if .tar.xz was only unzipped to tar file
     # (shall work better with newer choco versions)
-    $tarFile = Join-Path $binRoot msys2Install
+    $tarFile = (get-childitem -path $binRoot "msys2*.tar").FullName
+    write-host "Tar: $tarFile"
     if (Test-Path $tarFile) {
         Get-ChocolateyUnzip $tarFile $binRoot
         Remove-Item $tarFile
+    } else {
+        write-error "No tarball found in $binRoot"
     }
 }
 
@@ -51,7 +54,8 @@ Install-ChocolateyPath $msysRoot
 
 # Finally initialize and upgrade MSYS2 according to https://msys2.github.io
 Write-Host "Initializing MSYS2..."
-$msysShell = Join-Path $msysRoot msys2_shell.bat
+$msysShell = Join-Path $msysRoot msys2_shell.cmd
+write-host "Starting $msysShell..."
 Start-Process -Wait $msysShell -ArgumentList '-c', exit
 
 $command = 'pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime'
