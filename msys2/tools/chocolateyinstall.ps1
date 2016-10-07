@@ -55,14 +55,22 @@ Install-ChocolateyPath $msysRoot
 # Finally initialize and upgrade MSYS2 according to https://msys2.github.io
 # and https://sourceforge.net/p/msys2/wiki/MSYS2%20installation/
 Write-Host "Initializing MSYS2..."
-$msysShell = Join-Path $msysRoot msys2.exe
-Write-Host "Starting '$msysShell'..."
-Start-Process -Wait $msysShell -ArgumentList '-c', exit
+
+$msysExe = Join-Path $msysRoot msys2.exe
+if (-not (Test-Path $msysExe)) {
+    throw @"
+No '$msysShell' found.
+You probably have an outdated MSYS2 installation in '$msysRoot'.
+Please delete '$msysRoot' and reinstall.
+"@
+}
+
+Write-Host "Starting '$msysExe'..."
+Start-Process -Wait $msysExe -ArgumentList 'bash', '-c', exit
 
 $command = 'pacman --noconfirm -Syuu'
 Write-Host "Upgrading core system packages with '$command'..."
-Start-Process -Wait $msysShell -ArgumentList '-c', "'$command'"
+Start-Process -Wait $msysExe -ArgumentList 'bash', '-c', "'$command'"
 
-# $command = 'pacman --noconfirm -Syuu'
 Write-Host "Upgrading full system with '$command'..."
-Start-Process -Wait $msysShell -ArgumentList '-c', "'$command'"
+Start-Process -Wait $msysExe -ArgumentList 'bash', '-c', "'$command'"
