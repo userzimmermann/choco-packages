@@ -90,7 +90,7 @@ REM Check system and create variables for MSYS2 (de)activation
 
 if "%MSYS2_ROOT%" == "" (
     REM try to find MSYS2 root directory in %PATH%
-    for %%S in (msys2_shell.bat) do (
+    for %%S in (msys2_shell.cmd) do (
         set "MSYS2_ROOT=%%~dp$PATH:S"
         REM %MSYS2_ROOT% would not be set in current context w/o goto
         REM (that often discussed strange set-in-for-loop behavior...)
