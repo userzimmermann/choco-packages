@@ -1,3 +1,8 @@
+### 20160719.1.0
+
+* Adapted **msystem.bat** to new MSYS2 versions.
+* Fixed an install script error message.
+
 ### 20160719.0.1
 
 * Updated 32bit and 64bit download URLs for MSYS2 20160719.
