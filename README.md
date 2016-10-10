@@ -1,6 +1,38 @@
-Zimmermann's Chocolatey Packages
+Zimmermann's Chocolatey packages
 ================================
 
-* https://chocolatey.org/profiles/userzimmermann
-* https://bitbucket.org/userzimmermann/choco-packages
-* https://github.com/userzimmermann/choco-packages
+### Automated Windows software management
+
+> [chocolatey.org/profiles/userzimmermann](
+    https://chocolatey.org/profiles/userzimmermann)
+
+**Git** repository:
+* [github.com/userzimmermann/choco-packages](
+    https://github.com/userzimmermann/choco-packages)
+* [gitlab.com/userzimmermann/choco-packages](
+    https://gitlab.com/userzimmermann/choco-packages)
+
+**Hg** repository: [bitbucket.org/userzimmermann/choco-packages](
+  https://bitbucket.org/userzimmermann/choco-packages)
+
+[msys2] MSYS2
+--------------
+
+> **A Cygwin-derived software distro for Windows using Arch Linux's Pacman**
+
+[![](https://img.shields.io/chocolatey/v/msys2.svg)](
+  https://chocolatey.org/packages/msys2)
+[![](https://img.shields.io/chocolatey/dt/msys2.svg)](
+  https://chocolatey.org/packages/msys2)
+
+[![](https://ci.appveyor.com/api/projects/status/wf4g2ftsatog8wvf?svg=true)](
+  https://ci.appveyor.com/project/userzimmermann/choco-packages-6hb62)
+
+**Git** branch:
+* [github.com/userzimmermann/choco-packages/tree/msys2](
+    https://github.com/userzimmermann/choco-packages/tree/msys2)
+* [gitlab/userzimmermann/choco-packages/tree/msys2](
+    https://gitlab.com/userzimmermann/choco-packages/tree/msys2)
+
+**Hg** branch: [bitbucket.org/userzimmermann/choco-packages/src/msys2](
+  https://bitbucket.org/userzimmermann/choco-packages/src/msys2)
