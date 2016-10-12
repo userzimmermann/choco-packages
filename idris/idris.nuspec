@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>idris</id>
+    <title>Idris</title>
+    <version>0.12.3</version>
+    <authors>Edwin Brady and many contributors</authors>
+    <owners>userzimmermann</owners>
+    <summary>A Dependently Typed Functional Programming Language</summary>
+    <description>
+**From** http://www.idris-lang.org :
+
+"Idris is a general purpose pure functional programming language with dependent types. Dependent types allow types to be predicated on values, meaning that some aspects of a program's behaviour can be specified precisely in the type. It is compiled, with eager evaluation. Its features are influenced by Haskell and ML, ..."
+
+You can find the full feature list and comprehensive documentation at the link above and the [Idris-dev Github wiki](https://github.com/idris-lang/Idris-dev/wiki).
+
+**Chocolatey Idris** is not affiliated with the Idris project and does not include a copy of Idris. It just automatically downloads and installs Idris.
+    </description>
+    <projectUrl>http://www.idris-lang.org</projectUrl>
+    <packageSourceUrl>https://github.com/userzimmermann/choco-packages/tree/master/idris</packageSourceUrl>
+    <projectSourceUrl>https://github.com/idris-lang/Idris-dev</projectSourceUrl>
+    <docsUrl>https://github.com/idris-lang/Idris-dev/wiki</docsUrl>
+    <tags>idris functional programming language haskell ml ghc mingw</tags>
+    <copyright>Copyright (c) 2011 Edwin Brady</copyright>
+    <licenseUrl>https://github.com/idris-lang/Idris-dev/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>http://cdn.rawgit.com/idris-lang/Idris-dev/master/icons/idris.ico</iconUrl>
+    <!--<dependencies>
+      <dependency id="" version="__VERSION__" />
+      <dependency id="" />
+    </dependencies>-->
+    <releaseNotes>https://github.com/idris-lang/Idris-dev/blob/master/CHANGELOG.md</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+  </files>
+</package>
