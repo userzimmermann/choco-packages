@@ -1,14 +1,20 @@
 Chocolatey MSYS2
 ================
 
-* https://bitbucket.org/userzimmermann/choco-packages/src/default/msys2
-* https://github.com/userzimmermann/choco-packages/tree/master/msys2
+[![](https://img.shields.io/chocolatey/v/msys2.svg)](
+  https://chocolatey.org/packages/msys2)
+[![](https://img.shields.io/chocolatey/dt/msys2.svg)](
+  https://chocolatey.org/packages/msys2)
 
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+[![](https://ci.appveyor.com/api/projects/status/wf4g2ftsatog8wvf?svg=true)](
+  https://ci.appveyor.com/project/userzimmermann/choco-packages-6hb62)
 
 [![Build status](
   https://ci.appveyor.com/api/projects/status/wf4g2ftsatog8wvf?svg=true)](
   https://ci.appveyor.com/project/userzimmermann/choco-packages-6hb62)
+
+> Chocolatey package licensed under the [Apache License, Version 2.0](
+    http://www.apache.org/licenses/LICENSE-2.0)
 
 **From** https://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/ :
 
