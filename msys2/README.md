@@ -9,10 +9,6 @@ Chocolatey MSYS2
 [![](https://ci.appveyor.com/api/projects/status/wf4g2ftsatog8wvf?svg=true)](
   https://ci.appveyor.com/project/userzimmermann/choco-packages-6hb62)
 
-[![Build status](
-  https://ci.appveyor.com/api/projects/status/wf4g2ftsatog8wvf?svg=true)](
-  https://ci.appveyor.com/project/userzimmermann/choco-packages-6hb62)
-
 > Chocolatey package licensed under the [Apache License, Version 2.0](
     http://www.apache.org/licenses/LICENSE-2.0)
 
