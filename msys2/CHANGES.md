@@ -1,3 +1,8 @@
+### 20160719.1.1
+
+* Search for exact **.tar** file in install script.
+* Explicitly check final unzipping result.
+
 ### 20160719.1.0
 
 * Adapted **msystem.bat** to new MSYS2 versions.
