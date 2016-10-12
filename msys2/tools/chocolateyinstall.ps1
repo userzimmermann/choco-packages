@@ -83,11 +83,11 @@ Please delete '$msysRoot' and reinstall.
 }
 
 Write-Host "Starting '$msysExe'..."
-Start-Process -Wait $msysExe -ArgumentList 'bash', '-c', exit
+Start-Process -Wait $msysExe -ArgumentList '-c', exit
 
 $command = 'pacman --noconfirm -Syuu'
 Write-Host "Upgrading core system packages with '$command'..."
-Start-Process -Wait $msysExe -ArgumentList 'bash', '-c', "'$command'"
+Start-Process -Wait $msysExe -ArgumentList '-c', "'$command'"
 
 Write-Host "Upgrading full system with '$command'..."
-Start-Process -Wait $msysExe -ArgumentList 'bash', '-c', "'$command'"
+Start-Process -Wait $msysExe -ArgumentList '-c', "'$command'"
