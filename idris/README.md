@@ -7,4 +7,10 @@ Chocolatey Idris
 
 You can find the full feature list and comprehensive documentation at the link above and the [Idris-dev Github wiki](https://github.com/idris-lang/Idris-dev/wiki).
 
-**Chocolatey Idris** is not affiliated with the Idris project and does not include a copy of Idris. It just automatically downloads and installs Idris.
+**Chocolatey Idris** is not affiliated with the Idris project and does not include a copy of Idris. It just automatically downloads and installs the Idris [Windows binary distribution](https://github.com/idris-lang/Idris-dev/wiki/Windows-Binaries).
+
+### INFOS
+
+The Idris archive will be extracted to the Chocolatey package's **tools** sub-directory (usually **C:\\ProgramData\\chocolatey\\lib\\idris\\tools**), and Chocolatey will create shims for **idris.exe** and all **idris-codegen-*.exe** files, so that they are available in `%PATH%`.
+
+On updating or uninstalling, the (old) Idris distribution will be deleted together with the (old) Chocolatey package files.
