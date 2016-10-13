@@ -1,6 +1,8 @@
 Chocolatey Idris
 =================
 
+> https://chocolatey.org/packages/idris
+
 [![](https://ci.appveyor.com/api/projects/status/4gxc6i7oh6ainu57?svg=true)](
   https://ci.appveyor.com/project/userzimmermann/choco-packages-85c6u)
 
