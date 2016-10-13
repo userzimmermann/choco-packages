@@ -16,7 +16,7 @@ Zimmermann's Chocolatey packages
   https://bitbucket.org/userzimmermann/choco-packages)
 
 [msys2] MSYS2
---------------
+-------------
 
 > **A Cygwin-derived software distro for Windows using Arch Linux's Pacman**
 
@@ -31,8 +31,25 @@ Zimmermann's Chocolatey packages
 **Git** branch:
 * [github.com/userzimmermann/choco-packages/tree/msys2](
     https://github.com/userzimmermann/choco-packages/tree/msys2)
-* [gitlab/userzimmermann/choco-packages/tree/msys2](
+* [gitlab.com/userzimmermann/choco-packages/tree/msys2](
     https://gitlab.com/userzimmermann/choco-packages/tree/msys2)
 
 **Hg** branch: [bitbucket.org/userzimmermann/choco-packages/src/msys2](
   https://bitbucket.org/userzimmermann/choco-packages/src/msys2)
+
+[idris] Idris
+-------------
+
+> **A Dependently Typed Functional Programming Language**
+
+[![](https://ci.appveyor.com/api/projects/status/4gxc6i7oh6ainu57?svg=true)](
+  https://ci.appveyor.com/project/userzimmermann/choco-packages-85c6u)
+
+**Git** branch:
+* [github.com/userzimmermann/choco-packages/tree/idris](
+    https://github.com/userzimmermann/choco-packages/tree/idris)
+* [gitlab.com/userzimmermann/choco-packages/tree/idris](
+    https://gitlab.com/userzimmermann/choco-packages/tree/idris)
+
+**Hg** branch: [bitbucket.org/userzimmermann/choco-packages/src/idris](
+  https://bitbucket.org/userzimmermann/choco-packages/src/idris)
