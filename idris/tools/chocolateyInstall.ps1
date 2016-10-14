@@ -4,11 +4,11 @@ $packageName = 'idris'
 
 $idrisVersion = '0.12.3'
 
-$url = "https://neon.se/idris/idris-$idrisVersion-win32.7z"
+$url = "http://neon.se/idris/idris-$idrisVersion-win32.7z"
 $checksum = '6169C98B2B47C6DD68125FE9D2AEA347A51458A2'
 $checksumType = 'SHA1'
 
-$url64 = "https://neon.se/idris/idris-$idrisVersion-win64.7z"
+$url64 = "http://neon.se/idris/idris-$idrisVersion-win64.7z"
 $checksum64 = '9D5E81EAFF61E22BF42CE67F594000CD773EB9C1'
 $checksumType64 = 'SHA1'
 
