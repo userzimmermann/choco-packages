@@ -25,5 +25,5 @@ $mingwDir = Join-Path $idrisDir mingw
 # avoid shim creation for mingw tools
 # (only idris*.exe shims shall be created)
 foreach ($exe in (Get-ChildItem $mingwDir '*.exe' -Recurse)) {
-    New-Item $exe.Directory -Name "$exe.ignore"
+    New-Item $exe.Directory -Type File -Name "$exe.ignore"
 }
