@@ -1,3 +1,5 @@
+* Reduced Chocolates MSYS2 to meta-package depending on MSYS2.portable
+
 ### 20160719.1.1
 
 * Search for exact **.tar** file in install script.
