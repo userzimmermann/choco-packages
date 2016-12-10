@@ -8,17 +8,17 @@ $ErrorActionPreference = 'Stop';
 
 $packageName = 'msys2'
 
-$msysVersion = '20160921'
+$msysVersion = '20161025'
 
 $msys32DistName = "msys2-base-i686-$msysVersion"
 $msys64DistName = "msys2-base-x86_64-$msysVersion"
 
 $url = "http://repo.msys2.org/distrib/i686/$msys32DistName.tar.xz"
-$checksum = '7DA041072DC2F8A346803AFE4FF1E1977DD1E905'
+$checksum = '5D17FA53077A93A38A9AC0ACB8A03BF6C2FC32AD'
 $checksumType = 'SHA1'
 
 $url64 = "http://repo.msys2.org/distrib/x86_64/$msys64DistName.tar.xz"
-$checksum64 = '78B1738EB6049EFB693E3D1AA4502BCBE03B2964'
+$checksum64 = '05FD74A6C61923837DFFE22601C9014F422B5460'
 $checksumType64 = 'SHA1'
 
 $toolsDir = Split-Path -parent $MyInvocation.MyCommand.Definition
