@@ -71,17 +71,38 @@ Install-ChocolateyPath $msysRoot
 
 # Finally initialize and upgrade MSYS2 according to https://msys2.github.io
 # and https://sourceforge.net/p/msys2/wiki/MSYS2%20installation/
-Write-Host "Initializing MSYS2..."
-
 $msysShell = Join-Path (Join-Path (Join-Path $msysRoot usr) bin) bash.exe
-Start-Process -NoNewWindow -Wait $msysShell `
-  -ArgumentList '--login', '-c', 'exit'
 
-$command = 'pacman --noconfirm -Syuu'
-Write-Host "Upgrading core system packages with '$command'..."
-Start-Process -NoNewWindow -Wait $msysShell `
-  -ArgumentList '--login', '-c', "'$command'"
+# define a function for easying the execution of bash scripts.
+function Bash($script) {
+    $eap = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+        # we also redirect the stderr to stdout because PowerShell
+        # oddly interleaves them.
+        # see https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
+        echo "exec 2>&1;set -eu;export PATH=`"/usr/bin:`$PATH`";$script" | &$msysShell --login
+        if ($LASTEXITCODE) {
+            throw "bash execution failed with exit code $LASTEXITCODE"
+        }
+    } finally {
+        $ErrorActionPreference = $eap
+    }
+}
 
-Write-Host "Upgrading full system with '$command'..."
-Start-Process -NoNewWindow -Wait $msysShell `
-  -ArgumentList '--login', '-c', "'$command'"
+# setting TERM to an unknown terminal name prevents something in the MSYS2
+# initialization from messing up the terminal (ConEmu in particular).
+$env:TERM = 'none'
+
+# do the initial initialization.
+# at the first run msys2 will at least initialize pacman.
+Write-Host 'Initializing MSYS2...'
+Bash
+
+# do the upgrade by running $command until no more packages are
+# available (when --print no longer outputs any url).
+$command = 'pacman --noconfirm --noprogressbar -Syuu'
+while (Bash "$command --print" | Select-String '^https?://' -Quiet) {
+    Write-Host 'Upgrading MSYS2...'
+    Bash $command
+}
