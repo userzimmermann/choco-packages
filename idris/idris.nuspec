@@ -4,7 +4,7 @@
   <metadata>
     <id>idris</id>
     <title>Idris</title>
-    <version>0.12.3</version>
+    <version>1.1.1</version>
     <authors>Edwin Brady, and many contributors</authors>
     <owners>userzimmermann</owners>
     <summary>A Dependently Typed Functional Programming Language</summary>
