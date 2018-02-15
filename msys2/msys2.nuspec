@@ -4,7 +4,7 @@
   <metadata>
     <id>msys2</id>
     <title>MSYS2</title>
-    <version>20161025.0.0</version>
+    <version>20161025.0.1</version>
     <authors>Alexpux, martell, mingwandroid, elieux, renatosilva, niXman</authors>
     <owners>userzimmermann, petemounce</owners>
     <summary>A Cygwin-derived software distro for Windows using Arch Linux's Pacman</summary>

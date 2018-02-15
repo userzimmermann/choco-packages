@@ -101,7 +101,8 @@ Bash
 
 # do the upgrade by running $command until no more packages are
 # available (when --print no longer outputs any url).
-$command = 'pacman --noconfirm --noprogressbar -Syuu'
+# NB --ask=20 is needed to workaround https://github.com/Alexpux/MSYS2-packages/issues/1141
+$command = 'pacman --noconfirm --ask=20 --noprogressbar -Syuu'
 while (Bash "$command --print" | Select-String '^https?://' -Quiet) {
     Write-Host 'Upgrading MSYS2...'
     Bash $command
