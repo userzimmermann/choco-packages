@@ -2,14 +2,14 @@ $ErrorActionPreference = 'Stop';
 
 $packageName = 'idris'
 
-$idrisVersion = '1.1.1'
+$idrisVersion = '1.3.0'
 
 $url = "https://neon.se/idris/idris-$idrisVersion-win32.7z"
-$checksum = '40F5FB612C37F0E4D7F30B29F55776B3D46E9E13'
+$checksum = '5BB6AFCE33987A190086CFDC59B4CDFE8E3254EC'
 $checksumType = 'SHA1'
 
 $url64 = "https://neon.se/idris/idris-$idrisVersion-win64.7z"
-$checksum64 = 'FB73F87F09CE9881476B4DE312AA4A0E1BBC13C4'
+$checksum64 = 'C8F787C39BA34F7BEB133D9F559F06E74DA10E8F'
 $checksumType64 = 'SHA1'
 
 $toolsDir = Split-Path -parent $MyInvocation.MyCommand.Definition
