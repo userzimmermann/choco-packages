@@ -101,9 +101,22 @@ Bash
 
 # do the upgrade by running $command until no more packages are
 # available (when --print no longer outputs any url).
+# NB we try forever hoping to overcome temporary failures alike:
+#       error: failed retrieving file 'make-4.2.1-1-x86_64.pkg.tar.xz' from repo.msys2.org : Operation too slow. Less than 1 bytes/sec transferred the last 10 seconds
+#       error: failed retrieving file 'make-4.2.1-1-x86_64.pkg.tar.xz' from sourceforge.net : expected download size exceeded
+#       error: failed to commit transaction (unexpected error)
 # NB --ask=20 is needed to workaround https://github.com/Alexpux/MSYS2-packages/issues/1141
 $command = 'pacman --noconfirm --ask=20 --noprogressbar -Syuu'
-while (Bash "$command --print" | Select-String '^https?://' -Quiet) {
-    Write-Host 'Upgrading MSYS2...'
-    Bash $command
+while ($true) {
+    try {
+        while (Bash "$command --print" | Select-String '^https?://' -Quiet) {
+            Write-Host 'Upgrading MSYS2...'
+            Bash $command
+        }
+        break
+    } catch {
+        Write-Host "Failed to upgrade MSYS2: $_"
+        Write-Host "Retrying in a bit..."
+        Start-Sleep -Seconds 10
+    }
 }
