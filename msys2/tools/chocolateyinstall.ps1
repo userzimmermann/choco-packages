@@ -8,17 +8,17 @@ $ErrorActionPreference = 'Stop';
 
 $packageName = 'msys2'
 
-$msysVersion = '20160921'
+$msysVersion = '20161025'
 
 $msys32DistName = "msys2-base-i686-$msysVersion"
 $msys64DistName = "msys2-base-x86_64-$msysVersion"
 
 $url = "http://repo.msys2.org/distrib/i686/$msys32DistName.tar.xz"
-$checksum = '7DA041072DC2F8A346803AFE4FF1E1977DD1E905'
+$checksum = '5D17FA53077A93A38A9AC0ACB8A03BF6C2FC32AD'
 $checksumType = 'SHA1'
 
 $url64 = "http://repo.msys2.org/distrib/x86_64/$msys64DistName.tar.xz"
-$checksum64 = '78B1738EB6049EFB693E3D1AA4502BCBE03B2964'
+$checksum64 = '05FD74A6C61923837DFFE22601C9014F422B5460'
 $checksumType64 = 'SHA1'
 
 $toolsDir = Split-Path -parent $MyInvocation.MyCommand.Definition
@@ -71,17 +71,52 @@ Install-ChocolateyPath $msysRoot
 
 # Finally initialize and upgrade MSYS2 according to https://msys2.github.io
 # and https://sourceforge.net/p/msys2/wiki/MSYS2%20installation/
-Write-Host "Initializing MSYS2..."
-
 $msysShell = Join-Path (Join-Path (Join-Path $msysRoot usr) bin) bash.exe
-Start-Process -NoNewWindow -Wait $msysShell `
-  -ArgumentList '--login', '-c', 'exit'
 
-$command = 'pacman --noconfirm -Syuu'
-Write-Host "Upgrading core system packages with '$command'..."
-Start-Process -NoNewWindow -Wait $msysShell `
-  -ArgumentList '--login', '-c', "'$command'"
+# define a function for easying the execution of bash scripts.
+function Bash($script) {
+    $eap = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+        # we also redirect the stderr to stdout because PowerShell
+        # oddly interleaves them.
+        # see https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
+        echo "exec 2>&1;set -eu;export PATH=`"/usr/bin:`$PATH`";$script" | &$msysShell --login
+        if ($LASTEXITCODE) {
+            throw "bash execution failed with exit code $LASTEXITCODE"
+        }
+    } finally {
+        $ErrorActionPreference = $eap
+    }
+}
 
-Write-Host "Upgrading full system with '$command'..."
-Start-Process -NoNewWindow -Wait $msysShell `
-  -ArgumentList '--login', '-c', "'$command'"
+# setting TERM to an unknown terminal name prevents something in the MSYS2
+# initialization from messing up the terminal (ConEmu in particular).
+$env:TERM = 'none'
+
+# do the initial initialization.
+# at the first run msys2 will at least initialize pacman.
+Write-Host 'Initializing MSYS2...'
+Bash
+
+# do the upgrade by running $command until no more packages are
+# available (when --print no longer outputs any url).
+# NB we try forever hoping to overcome temporary failures alike:
+#       error: failed retrieving file 'make-4.2.1-1-x86_64.pkg.tar.xz' from repo.msys2.org : Operation too slow. Less than 1 bytes/sec transferred the last 10 seconds
+#       error: failed retrieving file 'make-4.2.1-1-x86_64.pkg.tar.xz' from sourceforge.net : expected download size exceeded
+#       error: failed to commit transaction (unexpected error)
+# NB --ask=20 is needed to workaround https://github.com/Alexpux/MSYS2-packages/issues/1141
+$command = 'pacman --noconfirm --ask=20 --noprogressbar -Syuu'
+while ($true) {
+    try {
+        while (Bash "$command --print" | Select-String '^https?://' -Quiet) {
+            Write-Host 'Upgrading MSYS2...'
+            Bash $command
+        }
+        break
+    } catch {
+        Write-Host "Failed to upgrade MSYS2: $_"
+        Write-Host "Retrying in a bit..."
+        Start-Sleep -Seconds 10
+    }
+}
